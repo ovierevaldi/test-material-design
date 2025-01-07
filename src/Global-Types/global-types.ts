@@ -6,3 +6,8 @@ export type SelectDataProp = {
 export type JenisMenuProp = 'mk' | 'mn'
 
 export type ListDataProp = string[];
+
+export type MakananProp = {
+    title: string,
+    harga: number
+}

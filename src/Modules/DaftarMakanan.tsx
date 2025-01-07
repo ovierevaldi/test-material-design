@@ -1,59 +1,14 @@
-import { JenisMenuProp, ListDataProp } from "../Global-Types/global-types"
+import { JenisMenuProp, ListDataProp, MakananProp } from "../Global-Types/global-types"
 import BaseList from "../Components/BaseList";
+import ApiProvider from "../Providers/ApiProvider";
 
 type DaftarMakananProp = {
     selectedJenis: JenisMenuProp
 }
 
-type MakananProp = {
-    title: string,
-    harga: number
-}
 
 const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
     
-    const menuMakananDummy: MakananProp[] = [
-        {
-            title: 'Nasi Goreng',
-            harga: 15000
-        },
-        
-        {
-            title: 'Bakso Sapi',
-            harga: 19000
-        },
-        {
-            title: 'Sate Ayam',
-            harga: 25000
-        },
-        {
-            title: 'Sop Kambing',
-            harga: 25000
-        },
-
-    ];
-
-    const menuMinumanDummy: MakananProp[] = [
-        {
-            title: 'Es Teh Manis',
-            harga: 5000
-        },
-        
-        {
-            title: 'Susu Soda Gembira',
-            harga: 9000
-        },
-        {
-            title: 'Es Buah',
-            harga: 15000
-        },
-        {
-            title: 'Es Jeruk',
-            harga: 5000
-        },
-
-    ];
-
     const convertMenuMakananToListData = (menuMakanan: MakananProp[]) : ListDataProp[] => {
         return menuMakanan.map((value) => [value.title, value.harga.toString()])
     };
@@ -70,7 +25,7 @@ const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
             </div>
             
             <BaseList 
-                data={convertMenuMakananToListData(selectedJenis === 'mk' ? menuMakananDummy : menuMinumanDummy)}
+                data={convertMenuMakananToListData(ApiProvider.getMenuMakanan(selectedJenis))}
             />
         </div>
     )
