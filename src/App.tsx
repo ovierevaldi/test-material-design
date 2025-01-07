@@ -1,11 +1,13 @@
 import './App.css'
+import MenuMakanan from './Modules/MenuMakanan'
 import PesanMakanan from './Modules/PesanMakanan'
 
 function App() {
 
   return (
    <div className='p-4'>
-    <PesanMakanan></PesanMakanan>
+    <MenuMakanan />
+    {/* <PesanMakanan /> */}
    </div>
   )
 }
