@@ -1,6 +1,4 @@
-import { useState } from "react";
-import BaseSelect from "../Components/BaseSelect"
-import { JenisMenuProp, ListDataProp, SelectDataProp } from "../Global-Types/global-types"
+import { JenisMenuProp, ListDataProp } from "../Global-Types/global-types"
 import BaseList from "../Components/BaseList";
 
 type DaftarMakananProp = {
