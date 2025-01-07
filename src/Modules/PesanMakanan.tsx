@@ -10,7 +10,10 @@ const PesanMakanan = () => {
         <h1 className="text-center text-4xl">Pesan Makanan</h1>
         <div>
           <p>Pilih Makanan:</p>
-          <BaseSelect></BaseSelect>
+          <BaseSelect 
+            helperText="*Harga sudah termasuk pajak"
+            
+          />
         </div>
         <div>
           <p>Jumlah:</p>
