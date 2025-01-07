@@ -1,11 +1,20 @@
+import BaseInputNumber from "../Components/BaseInputNumber"
+import BaseSelect from "../Components/BaseSelect"
 
 const PesanMakanan = () => {
   return (
-    <div>
+    <div className="max-w-md mx-auto">
         {/* Form */}
         
-        <h1 className="">Pesan Makanan</h1>
-
+        <h1 className="text-center text-4xl">Pesan Makanan</h1>
+        <div>
+          <p>Pilih Makanan:</p>
+          <BaseSelect></BaseSelect>
+        </div>
+        <div>
+          <p>Jumlah:</p>
+          <BaseInputNumber label="Max: 10" maxVal={10}></BaseInputNumber>
+        </div>
     </div>
   )
 }
