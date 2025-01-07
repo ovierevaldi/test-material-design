@@ -1,11 +1,12 @@
 import './App.css'
 import BaseButton from './Components/BaseButton'
+import PesanMakanan from './Modules/PesanMakanan'
 
 function App() {
 
   return (
    <>
-    <BaseButton> Test </BaseButton>
+    <PesanMakanan></PesanMakanan>
    </>
   )
 }
