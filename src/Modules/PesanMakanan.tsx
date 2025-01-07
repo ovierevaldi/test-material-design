@@ -5,15 +5,19 @@ import BaseSelect from "../Components/BaseSelect"
 const PesanMakanan = () => {
   return (
     <div className="max-w-md mx-auto">
-        <h1 className="text-center text-4xl mb-12">Pesan Makanan</h1>
+        <h1 className="text-3xl font-semibold text-center mb-8">Pesan Makanan</h1>
 
         <form className="space-y-4">
           <div>
             <p>Pilih Makanan:</p>
             <BaseSelect
+              selectData={[
+                {label: 'Nasi Goreng', value: 'ns-gr'}
+              ]}
               variant="outlined"
               helperText="*Harga sudah termasuk pajak"
               size="small"
+              defaultSelectedIndex={0}
             />
           </div>
 
