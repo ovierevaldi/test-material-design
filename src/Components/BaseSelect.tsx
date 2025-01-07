@@ -1,12 +1,14 @@
-import { FormControl, FormHelperText, MenuItem, Select, SelectChangeEvent } from "@mui/material"
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
 import { useState } from "react"
 
 type BaseSelectProp = {
   helperText?: string,
-  variant?: "outlined" | "standard" | "filled"
+  variant?: "outlined" | "standard" | "filled",
+  size?: 'small' | 'medium'
+  label? : string
 }
 
-const BaseSelect = ({helperText, variant = 'standard'}: BaseSelectProp) => {
+const BaseSelect = ({helperText, variant = 'standard', size = 'small', label}: BaseSelectProp) => {
   const [selectedValue, setSelectedValue] = useState('Nasi Goreng');
 
   const handleChangeValue = (event: SelectChangeEvent) => {
@@ -14,8 +16,8 @@ const BaseSelect = ({helperText, variant = 'standard'}: BaseSelectProp) => {
   };
   
   return (
-    <FormControl fullWidth={true} variant={variant} size="small">
-        {/* <InputLabel>Pilih Makanan</InputLabel> */}
+    <FormControl fullWidth={true} variant={variant} size={size}>
+        <InputLabel>{label}</InputLabel>
         <Select value={selectedValue} onChange={handleChangeValue}>
           <MenuItem value={'Nasi Goreng'}>Nasi Goreng</MenuItem>
         </Select>

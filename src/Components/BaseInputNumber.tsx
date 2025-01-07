@@ -2,12 +2,15 @@ import { TextField } from '@mui/material'
 import { useState } from 'react'
 
 type BaseInputProp = {
-    label: string
+    label: string,
+    variant?: 'standard' | 'outlined' | 'filled'
     maxVal? : number,
     minVal?: number,
+    size?: 'small' | 'medium'
+    isFullWidth?: boolean
 }
 
-const BaseInputNumber = ({label, minVal = 0, maxVal = 999}: BaseInputProp) => {
+const BaseInputNumber = ({label, minVal = 0, maxVal = 999, variant = 'standard', size = 'small', isFullWidth = false}: BaseInputProp) => {
     const [currentValue, setCurrentValue] = useState('');
     const checkChangedValue = (event: React.ChangeEvent<HTMLInputElement> ) => {
 
@@ -29,7 +32,15 @@ const BaseInputNumber = ({label, minVal = 0, maxVal = 999}: BaseInputProp) => {
         setCurrentValue(value);
     }
     return (
-        <TextField type='number' label={label} variant='standard' onChange={checkChangedValue} value={currentValue}/>
+        <TextField 
+            type='number' 
+            label={label} 
+            variant={variant} 
+            onChange={checkChangedValue} 
+            value={currentValue} 
+            size={size}
+            fullWidth={isFullWidth}
+        />
     )
 }
 

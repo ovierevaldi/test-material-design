@@ -1,12 +1,16 @@
 import { Button } from "@mui/material"
 
 type BaseButtonProp = {
-    children: React.ReactNode
+    children: React.ReactNode,
+    variant?: "text" | "contained" | "outlined",
+    size?: "small" | "medium" | "large"
 }
 
-const BaseButton = ({children} : BaseButtonProp) => {
+const BaseButton = ({children, variant, size} : BaseButtonProp) => {
   return (
-    <Button variant="contained">
+    <Button 
+      variant={variant} 
+      size={size}>
         {children}
     </Button>
   )
