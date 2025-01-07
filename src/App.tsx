@@ -25,11 +25,12 @@ function App() {
         <h1 className="text-center text-4xl mb-6">Restaurant Menu</h1>
         <div className='flex justify-center'>
           <BaseSelect 
-                      onValueChanged={(value) => setSelectedJenis(value as JenisMenuProp)}
-                      selectData={tipeMakananDummy} 
-                      label="Jenis" 
-                      defaultSelectedIndex={0}>
-            </BaseSelect>
+            onValueChanged={(value) => setSelectedJenis(value as JenisMenuProp)}
+            selectData={tipeMakananDummy} 
+            label="Jenis" 
+            defaultSelectedIndex={0}
+          >
+          </BaseSelect>
         </div>
       </div>
       <DaftarMakanan selectedJenis={selectedJenis}/>

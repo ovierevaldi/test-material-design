@@ -23,7 +23,15 @@ const PesanMakanan = () => {
 
           <div className="">
             <p>Jumlah:</p>
-            <BaseInputNumber label="Max: 10" maxVal={10} variant="outlined" size="small" isFullWidth={true}></BaseInputNumber>
+            
+            <BaseInputNumber 
+              label="Max: 10" 
+              maxVal={10} 
+              variant="outlined" 
+              size="small" 
+              isFullWidth={true}
+            />
+
           </div>
 
           <div>
@@ -32,7 +40,9 @@ const PesanMakanan = () => {
           </div>
 
           <div className="flex justify-center">
-            <BaseButton variant="outlined">
+            <BaseButton 
+              variant="outlined"
+            >
               Bayar
             </BaseButton>
           </div>

@@ -60,8 +60,6 @@ const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
 
     return (
         <div>
-         
-            
             <h2 className="text-3xl font-semibold text-center mb-8">
                 Daftar {selectedJenis === 'mk' ? 'Makanan' : 'Minuman'}
             </h2>
@@ -71,7 +69,9 @@ const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
                 <p>Harga</p>
             </div>
             
-            <BaseList data={convertMenuMakananToListData(selectedJenis === 'mk' ? menuMakananDummy : menuMinumanDummy)}/>
+            <BaseList 
+                data={convertMenuMakananToListData(selectedJenis === 'mk' ? menuMakananDummy : menuMinumanDummy)}
+            />
         </div>
     )
 }
