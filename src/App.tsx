@@ -20,14 +20,18 @@ function App() {
   const [selectedJenis, setSelectedJenis] = useState<JenisMenuProp>('mk');
 
   return (
-   <div className='p-4'>
-      <h1 className="text-center text-4xl mb-12">Restaurant Menu</h1>
-      <BaseSelect 
-                onValueChanged={(value) => setSelectedJenis(value as JenisMenuProp)}
-                selectData={tipeMakananDummy} 
-                label="Jenis" 
-                defaultSelectedIndex={0}>
-      </BaseSelect>
+   <div className='p-4 space-y-8'>
+      <div>
+        <h1 className="text-center text-4xl mb-6">Restaurant Menu</h1>
+        <div className='flex justify-center'>
+          <BaseSelect 
+                      onValueChanged={(value) => setSelectedJenis(value as JenisMenuProp)}
+                      selectData={tipeMakananDummy} 
+                      label="Jenis" 
+                      defaultSelectedIndex={0}>
+            </BaseSelect>
+        </div>
+      </div>
       <DaftarMakanan selectedJenis={selectedJenis}/>
       <PesanMakanan />
    </div>
