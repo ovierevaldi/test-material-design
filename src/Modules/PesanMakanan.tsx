@@ -50,6 +50,7 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
               variant="outlined"
               helperText="*Harga sudah termasuk pajak"
               size="small"
+              isFullWidth={true}
               // defaultSelectedIndex={0}
               onValueChanged={(value) => setSelectedMakanan(value)}
             />
