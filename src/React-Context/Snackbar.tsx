@@ -1,18 +1,41 @@
 import { IconButton, Snackbar, SnackbarCloseReason } from '@mui/material';
-import { createContext, Fragment, PropsWithChildren, useContext, useState } from 'react'
+import { createContext, Fragment, PropsWithChildren, useContext, useReducer } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 
-export type SnackBarContextProp =  {
+type SnackBarContextProp =  {
     openSnackBar: (message: string) => void
 };
-
 type SnackBarProvierProp = PropsWithChildren;
+
+type SnackBarContentProp = {
+  isOpen: boolean,
+  message: string
+};
+
+type SnackBarReducerActProp = {
+  type: 'open' | 'close',
+  payload? : string
+}
 
 export const SnackbarContext = createContext<SnackBarContextProp | null>(null);
 
 const SnackbarProvider = ({children} : SnackBarProvierProp) => {
-    const [open, setOpen] = useState(false);
-    const [snackBarMessage, setSnackbarMessage] = useState('');
+    const initialState : SnackBarContentProp = {isOpen: false, message: ''};
+
+    const reducer = (state: SnackBarContentProp, action: SnackBarReducerActProp) : SnackBarContentProp => {
+      if(state){
+        void 0;
+      };
+      
+      switch (action.type) {
+        case 'open':
+          return { isOpen: true, message: action.payload || ''};
+        case 'close':
+          return { isOpen: false, message: ''};
+      };
+    }
+
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     const handleClose = ( event: React.SyntheticEvent | Event, reason?: SnackbarCloseReason) => {
       if(event){
@@ -22,14 +45,11 @@ const SnackbarProvider = ({children} : SnackBarProvierProp) => {
           return;
         }
 
-        setOpen(false);
+        dispatch({type: 'close', payload: ''});
     };
 
     const action = (
         <Fragment>
-          {/* <Button color="secondary" size="small" onClick={handleClose}>
-            UNDO
-          </Button> */}
           <IconButton
             size="small"
             aria-label="close"
@@ -42,17 +62,16 @@ const SnackbarProvider = ({children} : SnackBarProvierProp) => {
       );
 
     const openSnackBar = (message: string) => {
-        setOpen(true);
-        setSnackbarMessage(message)
+        dispatch({type: 'open', payload: message});
     }
 
     return (
         <SnackbarContext.Provider value={{openSnackBar}}>
            <Snackbar
-                open={open}
+                open={state.isOpen}
                 autoHideDuration={5000}
                 onClose={handleClose}
-                message={snackBarMessage}
+                message={state.message}
                 action={action}
             />
             {children}

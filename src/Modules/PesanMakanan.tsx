@@ -79,7 +79,7 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
             <BaseButton
               isDisabled={totalHarga === 0}
               variant="outlined"
-              onBtnClick={() => openSnackBar('Purchasing Success, Please wait until your food is being serverd.')}
+              onBtnClick={() => openSnackBar('Purchasing Success, Please wait until your food is being served.')}
             >
               Bayar
             </BaseButton>
