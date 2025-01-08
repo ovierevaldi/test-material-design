@@ -1,4 +1,4 @@
-import { Button, IconButton, Snackbar, SnackbarCloseReason } from '@mui/material';
+import { IconButton, Snackbar, SnackbarCloseReason } from '@mui/material';
 import { createContext, Fragment, PropsWithChildren, useContext, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -15,7 +15,10 @@ const SnackbarProvider = ({children} : SnackBarProvierProp) => {
     const [snackBarMessage, setSnackbarMessage] = useState('');
 
     const handleClose = ( event: React.SyntheticEvent | Event, reason?: SnackbarCloseReason) => {
-        if (reason === 'clickaway') {
+      if(event){
+        void 0;
+      }  
+      if (reason === 'clickaway') {
           return;
         }
 
