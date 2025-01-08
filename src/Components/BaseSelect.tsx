@@ -27,7 +27,7 @@ const BaseSelect = ({selectData, defaultSelectedIndex = -1, onValueChanged, help
   };
 
   useEffect(() => {
-      setDefaultValue(defaultSelectedIndex)
+      setDefaultValue(defaultSelectedIndex);
   }, [selectData]);
 
   const setDefaultValue = (index: number) => {

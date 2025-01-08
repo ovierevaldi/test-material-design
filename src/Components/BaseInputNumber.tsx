@@ -8,10 +8,13 @@ type BaseInputProp = {
     minVal?: number,
     size?: 'small' | 'medium'
     isFullWidth?: boolean
+
+    onValueChanged?: (value: string) => void;
 }
 
-const BaseInputNumber = ({label, minVal = 0, maxVal = 999, variant = 'standard', size = 'small', isFullWidth = false}: BaseInputProp) => {
+const BaseInputNumber = ({label, minVal = 0, maxVal = 999, variant = 'standard', size = 'small', isFullWidth = false, onValueChanged}: BaseInputProp) => {
     const [currentValue, setCurrentValue] = useState('');
+
     const checkChangedValue = (event: React.ChangeEvent<HTMLInputElement> ) => {
 
         let value = ''
@@ -30,6 +33,9 @@ const BaseInputNumber = ({label, minVal = 0, maxVal = 999, variant = 'standard',
         }
         
         setCurrentValue(value);
+        if(onValueChanged){
+            onValueChanged(value)
+        }
     }
     return (
         <TextField 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import BaseButton from "../Components/BaseButton"
 import BaseInputNumber from "../Components/BaseInputNumber"
 import BaseSelect from "../Components/BaseSelect"
@@ -10,10 +10,30 @@ type PesanMakanan = {
 
 const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
   const [selectedMakanan, setSelectedMakanan] = useState('');
+  const [jumlahPesan, setJumlahPesan] = useState(0);
+  const [totalHarga, setTotalHarga] = useState(0);
 
   const convertDataMakananToSelectData = (dataMakanan: MakananProp[]): SelectDataProp[] => {
-    return dataMakanan.map((value) => ({label: value.title, value: value.title}))
+    return dataMakanan.map((value) => ({label: value.title, value: value.code}))
   };
+
+  const getHargaMakanan = (value: string) => {
+    const harga = dataMakanan.find(makanan => makanan.code === value)?.harga;
+    if (harga)
+      return harga;
+    else
+      return 0;
+  }
+
+  const listData = useMemo(() => convertDataMakananToSelectData(dataMakanan), [dataMakanan]);
+
+  useEffect(() => {
+    const total = getHargaMakanan(selectedMakanan) * jumlahPesan;
+    if( total )
+      setTotalHarga(total)
+    else
+      setTotalHarga(0)
+  }, [jumlahPesan, selectedMakanan]);
 
   const listData = convertDataMakananToSelectData(dataMakanan);
 
@@ -51,11 +71,12 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
 
           <div>
             <p className="">Total: </p>
-            <p className="text-lg font-semibold">Rp. 50000 (Belum di coding)</p>
+            <p className="text-lg font-semibold">Rp. { totalHarga }</p>
           </div>
 
           <div className="flex justify-center">
             <BaseButton 
+              isDisabled={totalHarga === 0}
               variant="outlined"
             >
               Bayar
