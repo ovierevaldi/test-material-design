@@ -3,6 +3,7 @@ import BaseButton from "../Components/BaseButton"
 import BaseInputNumber from "../Components/BaseInputNumber"
 import BaseSelect from "../Components/BaseSelect"
 import { MakananProp, SelectDataProp } from "../Global-Types/global-types"
+import { useSnackbar } from "../React-Context/Snackbar"
 
 type PesanMakanan = {
   dataMakanan: MakananProp[]
@@ -35,8 +36,7 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
       setTotalHarga(0)
   }, [jumlahPesan, selectedMakanan]);
 
-  const listData = convertDataMakananToSelectData(dataMakanan);
-
+  const { openSnackBar } = useSnackbar();
 
   return (
     <div className="max-w-md mx-auto">
@@ -50,7 +50,7 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
               variant="outlined"
               helperText="*Harga sudah termasuk pajak"
               size="small"
-              defaultSelectedIndex={0}
+              // defaultSelectedIndex={0}
               onValueChanged={(value) => setSelectedMakanan(value)}
             />
           </div>
@@ -65,6 +65,7 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
               variant="outlined" 
               size="small" 
               isFullWidth={true}
+              onValueChanged={(value) => setJumlahPesan(parseInt(value))}
             />
 
           </div>
@@ -75,9 +76,10 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
           </div>
 
           <div className="flex justify-center">
-            <BaseButton 
+            <BaseButton
               isDisabled={totalHarga === 0}
               variant="outlined"
+              onBtnClick={() => openSnackBar('Purchasing Success, Please wait until your food is being serverd.')}
             >
               Bayar
             </BaseButton>
