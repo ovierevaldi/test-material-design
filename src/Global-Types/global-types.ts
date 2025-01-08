@@ -12,3 +12,5 @@ export type MakananProp = {
     title: string,
     harga: number
 }
+
+export type TextAlignProp = 'start' | 'middle' | 'end';

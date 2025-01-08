@@ -24,7 +24,9 @@ const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
                 <p>Harga</p>
             </div>
             
-            <BaseList 
+            <BaseList
+                childTextAlign="middle"
+                childWidth="even"
                 data={convertMenuMakananToListData(ApiProvider.getMenuMakanan(selectedJenis))}
             />
         </div>
