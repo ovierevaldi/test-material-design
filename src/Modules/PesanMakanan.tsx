@@ -39,25 +39,25 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
   const { openSnackBar } = useSnackbar();
 
   return (
-    <div className="max-w-md mx-auto">
-        <h1 className="text-3xl font-semibold text-center mb-8">Pesan Makanan</h1>
+    <div className="">
+        <h2 className="text-3xl font-semibold text-center pb-8">Pesan Makanan</h2>
 
-        <form className="space-y-4">
-          <div>
-            <p>Pilih Makanan:</p>
+        <form className="space-y-4 p-4">
+          <div className="flex flex-col items-center">
+            <p className="pb-2">Pilih Makanan:</p>
             <BaseSelect
               selectData={listData}
               variant="outlined"
               helperText="*Harga sudah termasuk pajak"
               size="small"
-              isFullWidth={true}
+              isFullWidth={false}
               // defaultSelectedIndex={0}
               onValueChanged={(value) => setSelectedMakanan(value)}
             />
           </div>
 
-          <div className="">
-            <p>Jumlah:</p>
+          <div className="flex flex-col items-center">
+            <p className="pb-2">Jumlah:</p>
             
             <BaseInputNumber 
               label="Max: 10"
@@ -65,22 +65,23 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
               maxVal={10} 
               variant="outlined" 
               size="small" 
-              isFullWidth={true}
+              isFullWidth={false}
               onValueChanged={(value) => setJumlahPesan(parseInt(value))}
             />
 
           </div>
 
-          <div>
-            <p className="">Total: </p>
+          <div className="flex flex-col items-center">
+            <p className="pb-2">Total: </p>
             <p className="text-lg font-semibold">Rp. { totalHarga }</p>
           </div>
 
-          <div className="flex justify-center">
+          <div className="max-w-[200px] mx-auto">
             <BaseButton
               isDisabled={totalHarga === 0}
               variant="outlined"
               onBtnClick={() => openSnackBar('Purchasing Success, Please wait until your food is being served.')}
+              isFullWidth={true}
             >
               Bayar
             </BaseButton>

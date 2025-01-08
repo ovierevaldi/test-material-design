@@ -14,21 +14,18 @@ const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
     };
 
     return (
-        <div>
-            <h2 className="text-3xl font-semibold text-center mb-8">
+        <div className="">
+            <h2 className="text-3xl font-semibold text-center pb-8">
                 Daftar {selectedJenis === 'mk' ? 'Makanan' : 'Minuman'}
             </h2>
-
-            <div className="flex justify-evenly text-xl font-semibold">
-                <p>Nama</p>
-                <p>Harga</p>
+            <div>
+                <BaseList
+                    childTextAlign="middle"
+                    childWidth="even"
+                    dataHeader={['Nama', 'Harga']}
+                    data={convertMenuMakananToListData(ApiProvider.getMenuMakanan(selectedJenis))}
+                />
             </div>
-            
-            <BaseList
-                childTextAlign="middle"
-                childWidth="even"
-                data={convertMenuMakananToListData(ApiProvider.getMenuMakanan(selectedJenis))}
-            />
         </div>
     )
 }

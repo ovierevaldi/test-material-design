@@ -7,9 +7,10 @@ type BaseButtonProp = {
     isDisabled? : boolean
 
     onBtnClick?: () => void
+    isFullWidth? : boolean
 }
 
-const BaseButton = ({children, variant, size, isDisabled, onBtnClick} : BaseButtonProp) => {
+const BaseButton = ({children, variant, size, isDisabled, onBtnClick, isFullWidth = false} : BaseButtonProp) => {
   
   const handleClick = () => {
     if(onBtnClick)
@@ -21,6 +22,7 @@ const BaseButton = ({children, variant, size, isDisabled, onBtnClick} : BaseButt
       disabled={isDisabled}
       variant={variant} 
       size={size}
+      fullWidth={isFullWidth}
       onClick={handleClick}
     >
         {children}
