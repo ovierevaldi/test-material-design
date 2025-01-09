@@ -1,16 +1,16 @@
 import { JenisMenuProp, ListDataProp, MakananProp } from "../Global-Types/global-types"
 import BaseList from "../Components/BaseList";
-import ApiProvider from "../Providers/ApiProvider";
 
 type DaftarMakananProp = {
-    selectedJenis: JenisMenuProp
+    selectedJenis: JenisMenuProp,
+    dataMakanan: MakananProp[]
 }
 
 
-const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
+const DaftarMakanan = ({selectedJenis, dataMakanan}: DaftarMakananProp) => {
     
     const convertMenuMakananToListData = (menuMakanan: MakananProp[]) : ListDataProp[] => {
-        return menuMakanan.map((value) => [value.title, value.harga.toString()])
+        return menuMakanan.map((value) => [value.nama, value.harga.toString()])
     };
 
     return (
@@ -23,7 +23,7 @@ const DaftarMakanan = ({selectedJenis}: DaftarMakananProp) => {
                     childTextAlign="middle"
                     childWidth="even"
                     dataHeader={['Nama', 'Harga']}
-                    data={convertMenuMakananToListData(ApiProvider.getMenuMakanan(selectedJenis))}
+                    data={convertMenuMakananToListData(dataMakanan)}
                 />
             </div>
         </div>

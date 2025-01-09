@@ -9,7 +9,7 @@ export type ListDataProp = string[];
 
 export type MakananProp = {
     code: string,
-    title: string,
+    nama: string,
     harga: number
 }
 

@@ -15,7 +15,7 @@ const PesanMakanan = ({dataMakanan} : PesanMakanan) => {
   const [totalHarga, setTotalHarga] = useState(0);
 
   const convertDataMakananToSelectData = (dataMakanan: MakananProp[]): SelectDataProp[] => {
-    return dataMakanan.map((value) => ({label: value.title, value: value.code}))
+    return dataMakanan.map((value) => ({label: value.nama, value: value.code}))
   };
 
   const getHargaMakanan = (value: string) => {

@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 import BaseSelect from './Components/BaseSelect'
-import { JenisMenuProp } from './Global-Types/global-types'
+import { JenisMenuProp, MakananProp } from './Global-Types/global-types'
 import DaftarMakanan from './Modules/DaftarMakanan'
 import PesanMakanan from './Modules/PesanMakanan'
 import ApiProvider from './Providers/ApiProvider'
 
 function App() {
   const [selectedJenis, setSelectedJenis] = useState<JenisMenuProp>('mk');
-  
+
+  const {data: dataMakanan, loading: loadingDataMakanan, error: errorCallDataMakanan } = ApiProvider.getMenuMakanan('mk');
+
   return (
    <div className='p-4 space-y-8 max-w-lg mx-auto border'>
       <div>
@@ -24,8 +26,23 @@ function App() {
           </BaseSelect>
         </div>
       </div>
-      <DaftarMakanan selectedJenis={selectedJenis}/>
-      <PesanMakanan dataMakanan={ApiProvider.getMenuMakanan(selectedJenis)}/>
+      {
+        !loadingDataMakanan && !errorCallDataMakanan && <DaftarMakanan dataMakanan={dataMakanan.getAllMakanan as MakananProp[]} selectedJenis={selectedJenis}/>
+      }
+      {
+        loadingDataMakanan && <div>Loading Data...</div>
+      }
+      {
+        errorCallDataMakanan && 
+        <div className='text-red'>Cannot get data makanan! 
+          <br />
+          <span className='text-balance'>Please contact admin</span>
+        </div>
+      }
+
+      {
+        !loadingDataMakanan && !errorCallDataMakanan && <PesanMakanan dataMakanan={dataMakanan.getAllMakanan as MakananProp[]}/>
+      }
    </div>
   )
 }
