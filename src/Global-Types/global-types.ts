@@ -14,3 +14,8 @@ export type MakananProp = {
 }
 
 export type TextAlignProp = 'start' | 'middle' | 'end';
+
+export type getMakananArgs = {
+    skip_page? : number,
+    amount? : number
+}

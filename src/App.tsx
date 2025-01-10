@@ -9,7 +9,7 @@ import ApiProvider from './Providers/ApiProvider'
 function App() {
   const [selectedJenis, setSelectedJenis] = useState<JenisMenuProp>('mk');
 
-  const {data: dataMakanan, loading: loadingDataMakanan, error: errorCallDataMakanan } = ApiProvider.getMenuMakanan('mk');
+  const {data: dataMakanan, loading: loadingDataMakanan, error: errorCallDataMakanan } = ApiProvider.getMenuMakanan('mk', {amount: 5, skip_page: 0});
 
   return (
    <div className='p-4 space-y-8 max-w-lg mx-auto border'>
@@ -37,12 +37,14 @@ function App() {
         <div className='text-red'>Cannot get data makanan! 
           <br />
           <span className='text-balance'>Please contact admin</span>
+          <p>{errorCallDataMakanan.message}</p>
         </div>
       }
 
       {
         !loadingDataMakanan && !errorCallDataMakanan && <PesanMakanan dataMakanan={dataMakanan.getAllMakanan as MakananProp[]}/>
       }
+    
    </div>
   )
 }
